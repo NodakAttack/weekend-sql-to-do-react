@@ -35,6 +35,20 @@ router.post("/", (req, res) => {
 
 // PUT
 
+router.put('/toggle/:id', (req, res) => {
+    let { id } = req.params;
+    const sqlText = `UPDATE "tasks" SET "completed" = NOT "completed" WHERE "id" = $1;`;
+    pool.query(sqlText, [id])
+        .then((result) => {
+            console.log(`Returned from database`, result);
+            res.sendStatus(201);
+        })
+        .catch((err) => {
+            console.log(`Error updating the database ${sqlText}`, err);
+            res.sendStatus(500)
+        })
+})
+
 // DELETE
 
 module.exports = router;

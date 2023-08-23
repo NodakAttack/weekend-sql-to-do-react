@@ -37,6 +37,18 @@ const addTask = (newTask) => {
   })
 }
 
+const toggleTask = (id) => {
+  axios
+  .put(`/tasks/toggle/${id}`)
+  .then((response) => {
+      console.log(response);
+      getTasks();
+  })
+  .catch((error) => {
+      console.log(error);
+  })
+}
+
 useEffect(() => {
   getTasks()
 }, [])
@@ -44,7 +56,7 @@ useEffect(() => {
   return (
     <div>
       <h1>TO DO APP</h1>
-      <GetTasks taskList={taskList} />
+      <GetTasks taskList={taskList}  toggleTask={toggleTask}/>
       <PostTask addTask={addTask} />
     </div>
   );
