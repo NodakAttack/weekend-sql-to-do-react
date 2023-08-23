@@ -69,6 +69,7 @@ useEffect(() => {
     <div>
       <h1>TO DO APP</h1>
       <GetTasks taskList={taskList}  toggleTask={toggleTask} removeTask={removeTask}/>
+      <br/>
       <PostTask addTask={addTask} />
     </div>
   );

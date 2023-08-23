@@ -12,7 +12,7 @@ function GetTasks({ taskList, toggleTask, removeTask }) {
                             onChange={() => toggleTask(item.id)}
                         />
                         {item.task}
-                    </label>
+                    </label> 
                     <button id='remove' onClick={() => removeTask(item.id)}>Remove</button>
                 </div>
             ))}
