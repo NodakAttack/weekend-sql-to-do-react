@@ -10,7 +10,7 @@ const handleSubmit = (event) => {
     const newTask = {
         task:task
     }
-
+    // add task
     addTask(newTask);
 
     //clear input

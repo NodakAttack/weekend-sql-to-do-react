@@ -5,6 +5,7 @@ function GetTasks({ taskList, toggleTask, removeTask }) {
         <div>
             {taskList.map(item => (
                 <div key={item.id}>
+                    {/* conditional styling */}
                     <label className={item.completed ? 'completed' : 'notCompleted'}>
                         <input
                             type="checkbox"
