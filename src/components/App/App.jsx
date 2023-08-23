@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 
 import GetTasks from '../GetTasks/GetTasks';
+import PostTask from '../PostTask/PostTask';
 
 import axios from "axios";
 
@@ -22,6 +23,20 @@ function App () {
         })
 }
 
+const addTask = (newTask) => {
+  axios
+  .post("/tasks", {
+    task:newTask.task
+  })
+  .then(response => {
+    console.log(response);
+    getTasks();
+  })
+  .catch(error => {
+    console.log(error);
+  })
+}
+
 useEffect(() => {
   getTasks()
 }, [])
@@ -29,7 +44,8 @@ useEffect(() => {
   return (
     <div>
       <h1>TO DO APP</h1>
-      <GetTasks taskList={taskList}/>
+      <GetTasks taskList={taskList} />
+      <PostTask addTask={addTask} />
     </div>
   );
 
