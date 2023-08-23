@@ -49,6 +49,18 @@ const toggleTask = (id) => {
   })
 }
 
+    // Remove function
+    const removeTask = (id) => {
+      axios.delete(`/tasks/${id}`)
+        .then((response) => {
+          console.log(response);
+          getTasks();
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    };
+
 useEffect(() => {
   getTasks()
 }, [])
@@ -56,7 +68,7 @@ useEffect(() => {
   return (
     <div>
       <h1>TO DO APP</h1>
-      <GetTasks taskList={taskList}  toggleTask={toggleTask}/>
+      <GetTasks taskList={taskList}  toggleTask={toggleTask} removeTask={removeTask}/>
       <PostTask addTask={addTask} />
     </div>
   );

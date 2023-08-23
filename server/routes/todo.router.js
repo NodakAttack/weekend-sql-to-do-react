@@ -51,4 +51,20 @@ router.put('/toggle/:id', (req, res) => {
 
 // DELETE
 
+router.delete("/:id" , (req, res) => {
+    // let { id } = req.params;
+    console.log("DELETE /tasks/:id");
+    const queryText = `DELETE FROM "tasks" WHERE "id" = $1;`;
+    pool
+      .query(queryText, [req.params.id])
+      .then((response) => {
+        console.log("task items deleted", response);
+        res.sendStatus(200);
+      })
+      .catch((error) => {
+        console.log("Error deleting task", error);
+        res.sendStatus(500);
+      });
+  });
+
 module.exports = router;
