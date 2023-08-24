@@ -1,6 +1,24 @@
+
 import './GetTasks.css';
 
-function GetTasks({ taskList, toggleTask, removeTask }) {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
+
+function GetTasks({ taskList, toggleTask, removeTask , editTask }) {
+
+        // edit task button
+    const handleEditClick = (taskId, task) => {
+        const editedTask = prompt('Edit task?', task);
+
+        const newTask = {
+            task: editedTask
+        }
+
+        if (editedTask !== null) {
+            editTask(taskId, newTask);
+        }
+    }
+
     return (
         <div>
             {taskList.map(item => (
@@ -15,6 +33,7 @@ function GetTasks({ taskList, toggleTask, removeTask }) {
                         {item.task}
                     </label> 
                     <button id='remove' onClick={() => removeTask(item.id)}>Remove</button>
+                    <button id='edit' onClick={() => handleEditClick(item.id, item.task)}><FontAwesomeIcon icon={faPen} /></button>
                 </div>
             ))}
         </div>

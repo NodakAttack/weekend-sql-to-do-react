@@ -53,6 +53,19 @@ function App() {
       })
   }
 
+  // Put, edit task route
+  const editTask = (id, updatedTask) => {
+    axios
+      .put(`/tasks/edit/${id}`, { task:updatedTask })
+      .then((response) => {
+        console.log(response);
+        getTasks();
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
   // Remove function
   const removeTask = (id) => {
     axios.delete(`/tasks/${id}`)
@@ -73,7 +86,7 @@ function App() {
   return (
     <div>
       <h1>TO DO APP</h1>
-      <GetTasks taskList={taskList} toggleTask={toggleTask} removeTask={removeTask} />
+      <GetTasks taskList={taskList} toggleTask={toggleTask} removeTask={removeTask} editTask={editTask} />
       <br />
       <PostTask addTask={addTask} />
     </div>

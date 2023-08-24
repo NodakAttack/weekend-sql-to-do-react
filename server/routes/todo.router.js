@@ -49,6 +49,22 @@ router.put('/toggle/:id', (req, res) => {
         })
 })
 
+// PUT edit task
+router.put('/edit/:id', (req, res) => {
+    let { id } = req.params;
+    let { task } = req.body.task;
+    const sqlText = `UPDATE "tasks" SET "task" = $1 WHERE "id" = $2;`;
+    pool.query(sqlText, [task, id])
+        .then((result) => {
+            console.log(`Returned from database`, result);
+            res.sendStatus(201);
+        })
+        .catch((err) => {
+            console.log(`Error updating the database ${sqlText}`, err);
+            res.sendStatus(500)
+        })
+})
+
 // DELETE
 
 router.delete("/:id" , (req, res) => {
