@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import './PostTask.css'
+import { TextField } from "@mui/material";
+
 
 function PostTask ({ addTask }) {
     const [task, setTask] = useState("");
@@ -21,7 +23,8 @@ const handleSubmit = (event) => {
         <div>
 
             <form onSubmit={handleSubmit}>
-                <input type="text" value={task} placeholder="Add Task" onChange={e => setTask(e.target.value)} />
+                {/* TODO modify text field */}
+                <TextField type="text" value={task} placeholder="Add Task" onChange={e => setTask(e.target.value)} />
                 <button id="submit" type="submit">Add Task</button>
             </form>
         </div>
